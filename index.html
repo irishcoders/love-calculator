@@ -16,40 +16,41 @@
 
 <body>
     <h1 class="heading">
-        <img class="logo" src="assets/images/logo.png" alt="logo">Love Calculator
+        <img class="logo" src="assets/images/logo.png" alt="logo"> Love Maths
     </h1>
 
     <div class="game-area">
         <div class="controls-area">
             <button data-type="addition" class="btn btn--big btn--green">
-                <i class="fa-solid fa-plus"></i>
+                <i class="fas fa-plus"></i>
             </button>
             <button data-type="subtract" class="btn btn--big btn--blue">
-                <i class="fa-solid fa-minus"></i>
+                <i class="fas fa-minus"></i>
             </button>
             <button data-type="multiply" class="btn btn--big btn--orange">
-                <i class="fa-solid fa-xmark"></i>
+                <i class="fas fa-times"></i>
             </button>
-            <button data-type="divide" class="btn btn--big btn--red">
-                <i class="fa-solid fa-divide"></i>
+            <button data-type="division" class="btn btn--big btn--red">
+                <i class="fas fa-divide"></i>
             </button>
         </div>
         <div class="question-area">
-            <span id="numeral1">0</span>
-            <span id="numeral">x</span>
-            <span id="numeral2">0</span>
+            <span id="operand1">0</span>
+            <span id="operator">x</span>
+            <span id="operand2">0</span>
             <span>=</span>
-            <p class="answer-text">Enter Your Answer:</p>
+            <p class="answer-message">Enter Answer:</p>
             <input id="answer-box" type="number">
         </div>
-    <button data-type="submit" class="btn btn--grey">Submit Answer</button>
+        <button data-type="submit" class="btn btn--gray">Submit Answer</button>
     </div>
+
     <div class="score-area">
         <p class="scores">Correct Answers <span id="score">0</span></p>
         <p class="scores">Incorrect Answers <span id="incorrect">0</span></p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
     <script src="https://kit.fontawesome.com/9f28b87073.js" crossorigin="anonymous"></script>
 </body>
 
