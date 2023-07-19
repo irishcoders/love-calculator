@@ -51,6 +51,9 @@ function runGame(gameType) {
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
     } else if (gameType === "division") {
+        // for division below, if you multiply num1 * num2 and divide by num2, all division answers will be even
+        // this is useful if you don't want math.floor to round up float (or decimal) to whole numbers (integer)
+        // e.g displayDivideQuestion(num1 * num2, num2)
         displayDivideQuestion(num1, num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
@@ -94,7 +97,7 @@ function calculateCorrectAnswer() {
     } else if (operator === "*") {
         return [operand1 * operand2, "multiply"];
     } else if (operator === "/") {
-        return [operand1 / operand2, "division"];
+        return [Math.floor(operand1 / operand2), "division"];
     } else {
         alert(`Unimplemented operator ${operator} `);
         throw `Unimplemented operator ${operator}. Abborting!..`;
@@ -148,7 +151,7 @@ function displayMultiplyQuestion(operand1, operand2) {
 }
 
 function displayDivideQuestion(operand1, operand2) {
-
+    //ternery operation to put the bigger number in front
     document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
     document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "/";
