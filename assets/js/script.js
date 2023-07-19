@@ -16,11 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /** this adds a listener to the Enter key on the keyboard so that our answers can log when user presses Enter on keyboard
+     *This means the user don't always have to us the submit button to enter their answer */
+    document.getElementById("answer-box").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+
+    });
+
     runGame("addition");
-    runGame("subtract");
-    runGame("multiply");
-    runGame("division");
-    
 
 });
 
@@ -29,6 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
  * and after the user's answer has been processed
  */
 function runGame(gameType) {
+    // This sets the answer box to empty after each game is played and recorded
+    document.getElementById("answer-box").value = "";
+
+    //this lets the cursor stay in the answer-box rather than the user clicking in it to type answer
+    document.getElementById("answer-box").focus();
+
     //This creates a random number between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
@@ -60,10 +71,10 @@ function checkAnswer() {
         alert("Congrats! You got the correct answer");
         incrementScore();
     } else {
-        alert(`Aww.. Your answer was wrong, your answer was ${userAnswer}, but the correct answer is ${calculatedAnswer[0]}!`)
+        alert(`Aww.. Your answer was wrong, your answer was ${userAnswer}, but the correct answer is ${calculatedAnswer[0]}!`);
         incrementWrongAnswer();
     }
-    
+
     runGame(calculatedAnswer[1]);
 }
 
@@ -85,7 +96,7 @@ function calculateCorrectAnswer() {
     } else if (operator === "/") {
         return [operand1 / operand2, "division"];
     } else {
-        alert(`Unimplemented operator ${operator} `)
+        alert(`Unimplemented operator ${operator} `);
         throw `Unimplemented operator ${operator}. Abborting!..`;
     }
 
@@ -94,7 +105,7 @@ function calculateCorrectAnswer() {
 
 /** 
  * Gets code from the DOM and increments it by 1, then displays it in the score box
- */ 
+ */
 function incrementScore() {
     let oldScore = parseInt(document.getElementById('score').innerText);
     document.getElementById('score').innerText = ++oldScore;
@@ -103,7 +114,7 @@ function incrementScore() {
 
 /** 
  * Gets code from the DOM and increments it by 1, then displays it in the incorrect box
- */ 
+ */
 function incrementWrongAnswer() {
     let oldScore = parseInt(document.getElementById('incorrect').innerText);
     document.getElementById('incorrect').innerText = ++oldScore;
@@ -122,7 +133,7 @@ function displaySubtractQuestion(operand1, operand2) {
      * so that if the first number is greater than the second number, 
      * the ternary function will automatically put the bigger number in front before the subtraction takes place
      * this is to avoid getting a negative (minus) result
-     * */ 
+     * */
     document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
     document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "-";
@@ -138,8 +149,8 @@ function displayMultiplyQuestion(operand1, operand2) {
 
 function displayDivideQuestion(operand1, operand2) {
 
-    document.getElementById('operand1').textContent = operand1;
-    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "/";
 
 }
