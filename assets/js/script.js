@@ -118,8 +118,13 @@ function displayAdditionQuestion(operand1, operand2) {
 }
 
 function displaySubtractQuestion(operand1, operand2) {
-    document.getElementById('operand1').textContent = operand1;
-    document.getElementById('operand2').textContent = operand2;
+    /** we use ternary operation here to call an if statement on the subtract function 
+     * so that if the first number is greater than the second number, 
+     * the ternary function will automatically put the bigger number in front before the subtraction takes place
+     * this is to avoid getting a negative (minus) result
+     * */ 
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById('operator').textContent = "-";
 
 }
